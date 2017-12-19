@@ -64,6 +64,7 @@ class Book
      * @ORM\OneToMany(targetEntity="Review", mappedBy="book")
      */
     private $reviews;
+
     /**
      * Constructor
      */
