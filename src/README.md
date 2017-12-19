@@ -17,8 +17,6 @@ to be validated to see if it meets the api requirements. Possible validation for
 - The field `description` is also required but does not have a length limit (type=TEXT) 
 - The field `author` is required and has the same validation rule as the field `title`
 - The field `publication` is required and it expects a date in this format: `YYYY-MM-DD HH:MM:SS`
-- The field `reviews` is not required but if supplied it expects an array of `Review` objects (which will consequently validated by the
- review validator)
 - There are only two optional values `id` and `isbn` which can be omitted from the request and therefore the
 default database values will be used.
 
@@ -31,5 +29,5 @@ Modify the `Review.php` file and add the following validation for the Review ent
 - The field `body` is required and its type should be `text`
 - The field `author` is required and its type should be `varchar(255)`
 - The field `publicationDate` is required and its type should be `datetime`
-- The field `Book` is required and its type should be `integer`
+- The field `Book` is required, its type should be `integer` and it should exist in the database already.
 
