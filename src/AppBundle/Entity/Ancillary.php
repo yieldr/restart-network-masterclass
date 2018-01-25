@@ -25,35 +25,35 @@ class Ancillary
     /**
      * @var string The type of the ancillary.
      *
-     * @ORM\Column
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $type;
 
     /**
      * @var int The number of points that this ancillary gives you.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $pointsGiven;
 
     /**
      * @var int The number of points needed for this ancillary to be free.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $pointsNeeded;
 
     /**
      * @var int The value of the ancillary.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $value;
 
     /**
      * @var string When the ancillary was used.
      *
-     * @ORM\Column
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
