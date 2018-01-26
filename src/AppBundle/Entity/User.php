@@ -65,11 +65,11 @@ class User
     private $ancillaries;
 
     /**
-     * @var Flight[] Flights that this user bought.
+     * @var Booking[] Bookings that this user made.
      *
      * @ORM\OneToMany(targetEntity="Booking", mappedBy="user")
      */
-    private $flights;
+    private $bookings;
 
     /**
      * @return int
@@ -184,18 +184,22 @@ class User
     }
 
     /**
-     * @return Flight[]
+     * @return Booking[]
      */
-    public function getFlights()
+    public function getBookings()
     {
-        return $this->flights;
+        return $this->bookings;
     }
 
     /**
-     * @param Flight[] $flights
+     * @param $bookings
+     *
+     * @return $this
      */
-    public function setFlights($flights)
+    public function setBookings($bookings)
     {
-        $this->flights = $flights;
+        $this->bookings = $bookings;
+
+        return $this;
     }
 }

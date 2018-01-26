@@ -28,7 +28,7 @@ class Booking
     private $flight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="flights")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="bookings")
      */
     private $user;
 
@@ -51,7 +51,7 @@ class Booking
     /**
      * @return Flight
      */
-    public function getFlights()
+    public function getFlight()
     {
         return $this->flight;
     }
@@ -59,7 +59,7 @@ class Booking
     /**
      * @param mixed $flight
      */
-    public function setFlights($flight)
+    public function setFlight($flight)
     {
         $this->flight = $flight;
     }
