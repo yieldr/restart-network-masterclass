@@ -19,6 +19,8 @@ class Booking
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Assert\Blank
      */
     private $id;
 

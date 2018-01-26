@@ -19,6 +19,8 @@ class Ancillary
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Assert\Blank
      */
     private $id;
 
@@ -26,6 +28,8 @@ class Ancillary
      * @var string The type of the ancillary.
      *
      * @ORM\Column(type="string", length=50, nullable=false)
+     *
+     * @Assert\Type("string")
      */
     private $type;
 
@@ -33,6 +37,8 @@ class Ancillary
      * @var int The number of points that this ancillary gives you.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $pointsGiven;
 
@@ -40,6 +46,8 @@ class Ancillary
      * @var int The number of points needed for this ancillary to be free.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $pointsNeeded;
 
@@ -47,6 +55,8 @@ class Ancillary
      * @var int The value of the ancillary.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $value;
 
@@ -54,6 +64,8 @@ class Ancillary
      * @var string When the ancillary was used.
      *
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Assert\DateTime()
      */
     private $date;
 

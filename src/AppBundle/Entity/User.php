@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * A user.
@@ -19,6 +20,8 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Assert\Blank
      */
     private $id;
 
@@ -26,6 +29,8 @@ class User
      * @var string The name of the user.
      *
      * @ORM\Column(type="string", length=125, nullable=false)
+     *
+     * @Assert\Type("string")
      */
     private $name;
 
@@ -33,6 +38,8 @@ class User
      * @var string The email of this user.
      *
      * @ORM\Column(type="string", length=125, nullable=false)
+     *
+     * @Assert\Email
      */
     private $email;
 
@@ -40,6 +47,8 @@ class User
      * @var string The location where the user is.
      *
      * @ORM\Column(type="string", length=125, nullable=true)
+     *
+     * @Assert\Type("string")
      */
     private $location;
 
@@ -47,6 +56,8 @@ class User
      * @var \DateTimeInterface Last time that we saw the user.
      *
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Assert\DateTime()
      */
     private $lastSeen;
 
@@ -54,6 +65,8 @@ class User
      * @var int Number of points that the user has.
      *
      * @ORM\Column(type="integer", nullable=true, options={"default" = 0})
+     *
+     * @Assert\Type("integer")
      */
     private $points;
 
