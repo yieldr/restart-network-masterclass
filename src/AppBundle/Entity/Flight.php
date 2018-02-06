@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * A flight.
@@ -25,56 +26,57 @@ class Flight
     /**
      * @var string The flight number of this flight.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $number;
 
     /**
      * @var int The number of the seats that the flight has.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $seats;
 
     /**
      * @var int The number of the seats that are available for the flight.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $seatsAvailable;
 
     /**
      * @var string The origin of the flight.
      *
-     * @ORM\Column
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $origin;
 
     /**
      * @var string The destination of the flight.
      *
-     * @ORM\Column
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $destination;
 
     /**
      * @var \DateTimeInterface The scheduled departure time of the flight.
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $scheduledDepartureTime;
 
     /**
      * @var \DateTimeInterface The actual departure time of the flight.
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
+     *
      */
     private $departureTime;
 
     /**
      * @var int The value of the flight.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $value;
 

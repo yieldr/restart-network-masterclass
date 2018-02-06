@@ -25,51 +25,51 @@ class User
     /**
      * @var string The name of the user.
      *
-     * @ORM\Column(nullable=false)
+     * @ORM\Column(type="string", length=125, nullable=false)
      */
     private $name;
 
     /**
      * @var string The email of this user.
      *
-     * @ORM\Column
+     * @ORM\Column(type="string", length=125, nullable=false)
      */
     private $email;
 
     /**
      * @var string The location where the user is.
      *
-     * @ORM\Column
+     * @ORM\Column(type="string", length=125, nullable=true)
      */
     private $location;
 
     /**
      * @var \DateTimeInterface Last time that we saw the user.
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $lastSeen;
 
     /**
      * @var int Number of points that the user has.
      *
-     * @ORM\Column
+     * @ORM\Column(type="integer", nullable=true, options={"default" = 0})
      */
     private $points;
 
     /**
-     * @var Ancillary[] Ancillaries that this user bought.
+     * @var Ancillary[] Ancillary that this user bought.
      *
      * @ORM\OneToMany(targetEntity="Ancillary", mappedBy="user")
      */
     private $ancillaries;
 
     /**
-     * @var Flight[] Flights that this user bought.
+     * @var Booking[] Bookings that this user made.
      *
      * @ORM\OneToMany(targetEntity="Booking", mappedBy="user")
      */
-    private $flights;
+    private $bookings;
 
     /**
      * @return int
@@ -184,18 +184,22 @@ class User
     }
 
     /**
-     * @return Flight[]
+     * @return Booking[]
      */
-    public function getFlights()
+    public function getBookings()
     {
-        return $this->flights;
+        return $this->bookings;
     }
 
     /**
-     * @param Flight[] $flights
+     * @param $bookings
+     *
+     * @return $this
      */
-    public function setFlights($flights)
+    public function setBookings($bookings)
     {
-        $this->flights = $flights;
+        $this->bookings = $bookings;
+
+        return $this;
     }
 }
