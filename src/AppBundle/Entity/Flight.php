@@ -20,6 +20,8 @@ class Flight
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Assert\Blank
      */
     private $id;
 
@@ -27,6 +29,8 @@ class Flight
      * @var string The flight number of this flight.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $number;
 
@@ -34,6 +38,8 @@ class Flight
      * @var int The number of the seats that the flight has.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $seats;
 
@@ -41,6 +47,8 @@ class Flight
      * @var int The number of the seats that are available for the flight.
      *
      * @ORM\Column(type="integer", nullable=false)
+     *
+     * @Assert\Type("integer")
      */
     private $seatsAvailable;
 
@@ -48,6 +56,8 @@ class Flight
      * @var string The origin of the flight.
      *
      * @ORM\Column(type="string", length=50, nullable=false)
+     *
+     * @Assert\Type("string")
      */
     private $origin;
 
@@ -55,6 +65,8 @@ class Flight
      * @var string The destination of the flight.
      *
      * @ORM\Column(type="string", length=50, nullable=false)
+     *
+     * @Assert\Type("string")
      */
     private $destination;
 
@@ -62,6 +74,8 @@ class Flight
      * @var \DateTimeInterface The scheduled departure time of the flight.
      *
      * @ORM\Column(type="datetime", nullable=false)
+     *
+     * @Assert\DateTime()
      */
     private $scheduledDepartureTime;
 
@@ -70,6 +84,7 @@ class Flight
      *
      * @ORM\Column(type="datetime", nullable=true)
      *
+     * @Assert\DateTime()
      */
     private $departureTime;
 
@@ -77,6 +92,8 @@ class Flight
      * @var int The value of the flight.
      *
      * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Assert\Type("integer")
      */
     private $value;
 
