@@ -1,52 +1,71 @@
-<p align="center"><img src="https://api-platform.com/logo-250x250.png" alt="API Platform"></p>
+<p align="center"><img src="https://www.yieldr.com/assets/images/Yieldr_smallsizes_green.svg" alt="Yieldr logo"></p>
 
-API Platform is a next-generation web framework designed to easily create API-first projects without
-compromising extensibility and flexibility:
+# Introduction
 
-* Design your own data model as plain old PHP classes or [**import an existing one**](https://api-platform.com/docs/schema-generator/) from the [Schema.org](https://schema.org/) vocabulary
-* **Expose in minutes a hypermedia REST API** with pagination, data validation, access control, relation embedding, filters and error handling...
-* Benefit from Content Negotiation: [JSON-LD](http://json-ld.org), [Hydra](http://hydra-cg.com), [HAL](http://stateless.co/hal_specification.html), [YAML](http://yaml.org/), [JSON](http://www.json.org/), [XML](https://www.w3.org/XML/) and [CSV](https://www.ietf.org/rfc/rfc4180.txt) are supported out of the box
-* Enjoy the **beautiful automatically generated API documentation** (Swagger/OpenAPI)
-* Add [**a convenient Material Design administration interface**](https://github.com/api-platform/admin) built with [React](https://facebook.github.io/react/) without writing a line of code
-* **Scaffold a fully functional Single-Page-Application** built with [React](https://facebook.github.io/react/), [Redux](http://redux.js.org/), [React Router](https://reacttraining.com/react-router/) and [Bootstrap](https://getbootstrap.com/) thanks to [the client generator](https://api-platform.com/docs/client-generator/)
-* Install a development environment and deploy your project in production using **[Docker](https://docker.com)**
-* Easily add **[JSON Web Token](https://jwt.io/) or [OAuth](https://oauth.net/) authentication**
-* Create specs and tests with a **developer friendly API testing tool** on top
-  of [Behat](http://behat.org/)
+For this tutorial we will be using the [Api Platform](https://api-platform.com/) framework which is built on top of
+[Symfony](https://symfony.com/).
 
-[![Build Status](https://travis-ci.org/api-platform/core.svg?branch=master)](https://travis-ci.org/api-platform/core)
-[![Build status](https://ci.appveyor.com/api/projects/status/grwuyprts3wdqx5l?svg=true)](https://ci.appveyor.com/project/dunglas/dunglasapibundle)
-[![Coverage Status](https://coveralls.io/repos/github/api-platform/core/badge.svg)](https://coveralls.io/github/api-platform/core)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/92d78899-946c-4282-89a3-ac92344f9a93/mini.png)](https://insight.sensiolabs.com/projects/92d78899-946c-4282-89a3-ac92344f9a93)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/api-platform/core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/api-platform/core/?branch=master)
+# Installation
 
-The official project documentation is available **[on the API Platform website](https://api-platform.com)**.
+To begin with this tutorial, you will need to clone the project we have prepared for you from 
+[github](https://github.com/yieldr/restart-network-masterclass). You can do this in your command line by typing: 
 
-API Platform embraces open web standards (Swagger, JSON-LD, Hydra, HAL, JWT, OAuth,
-HTTP...) and the [Linked Data](https://www.w3.org/standards/semanticweb/data) movement. Your API will automatically
-expose structured data in Schema.org/JSON-LD. It means that your API Platform application
-is usable **out of the box** with technologies of the semantic
-web.
+```bash
+$: git clone https://github.com/yieldr/restart-network-masterclass.git 
+```
 
-It also means that **your SEO will be improved** because **[Google leverages these
-formats](https://developers.google.com/structured-data/)**.
+Assuming you have composer installed in your computer, we will use it to install the project's dependencies.
+To do so, navigate to the directory where the project was cloned (e.g `cd Documents/restart-network-masterclass`) and
+run the following command in the terminal:
 
-Last but not least, API Platform is built on top of the [Symfony](https://symfony.com) framework.
-It means than you can:
+```bash
+$: composer install
+```
 
-* use **thousands of Symfony bundles** with API Platform
-* integrate API Platform in **any existing Symfony application**
-* reuse **all your Symfony skills** and benefit of the incredible
-  amount of Symfony documentation
-* enjoy the popular [Doctrine ORM](http://www.doctrine-project.org/projects/orm.html) (used by default, but fully optional: you can
-  use the data provider you want, including but not limited to MongoDB ODM and ElasticSearch)
+If the command above completed successfully you project's dependencies are succesfully imported under the `vendor` directory.  
 
-Install
--------
+Next you will need to update the configuration file of the project, which can be found in the `app/config` directory.
+ 
+Here you can set up doctrine to connect with your mysql database. If you open the `config.yml` file you will see
+that the structure already exists, you just need to provide the correct values for your environment.
 
-[Read the official "Getting Started" guide](https://api-platform.com/docs/core/getting-started).
+# Challenge
 
-Credits
--------
+As described in the presentation of ORM, each database table is represented by an entity class which can be found under 
+the `src/AppBundle/Entity` directory.
 
-Created by [Kévin Dunglas](https://dunglas.fr). Commercial support available at [Les-Tilleuls.coop](https://les-tilleuls.coop).
+There are 4 Entities which represent the ancillaries, bookings, flights and the users. 
+
+The Users Entity is complete and contains all the required mappings and validation requirements.
+
+### Task 1 : Creating the mappings
+
+Your first task is to update the other three Entities by creating the appropriate fields and map them to the database fields.
+
+### Task 2 : Adding validation
+
+After completing task 1, it is time to add validation to our Entities. Validation is very important since we only allow
+incoming data to have a specific format. To do so, you need to read carefully the high level requirements for each entity
+and decide what are the appropriate validation rules.
+
+### Task 3 : Creating the controllers (?)
+
+### Task 4 : Adding unit tests
+
+Unit tests are important for every application because if they are created and maintained carefully they can point out
+potential bugs after adding new features.
+
+For example, let's say we have a validation rule which states that any new flight added to the database must not have the
+same origin and destination. We also have a unit test for this in place, where we test two cases:
+
+- Case 1: The request's origin and destination fields are exactly the same therefore the validation should fail.
+- Case 2: The request's origin and destination fields are different so the validation should pass.
+
+If for any reason the validation is removed from the Entity because of a developer's mistake, case 1 will fail and 
+point out that there is something wrong with the validation.
+
+Your task is to write unit tests which verify that all the business requirements are met at all times.
+
+Again you can see how a unit test looks like by looking at the UsersTest.
+
+
