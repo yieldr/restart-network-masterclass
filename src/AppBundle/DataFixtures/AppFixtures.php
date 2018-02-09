@@ -44,6 +44,7 @@ class AppFixtures extends Fixture
             $booking->setFlight($flight);
             $booking->setUsers($user);
             $user->setBookings([$booking]);
+            $user->setPoints($i);
             $users[] = $user;
 
             $manager->persist($booking);
