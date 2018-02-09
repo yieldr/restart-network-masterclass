@@ -18,20 +18,6 @@ class AppFixtures extends Fixture
     {
         $now = new \DateTime();
 
-        // We create the ancillaries
-        for ($i = 0; $i < 20; $i++) {
-            $now = new \DateTime();
-
-            $ancillary = new Ancillary();
-            $ancillary->setType('Extra Space');
-            $ancillary->setDate($now);
-            $ancillary->setPointsGiven(5);
-            $ancillary->setPointsNeeded(15);
-            $ancillary->setValue(1);
-
-            $manager->persist($ancillary);
-        }
-
         // We create the flights
         for ($i = 0; $i < 100; $i++) {
 
@@ -48,6 +34,7 @@ class AppFixtures extends Fixture
         }
 
         // We create the users with some bookings
+        $users = [];
         for ($i = 0; $i < 100; $i++) {
             $user = new User();
             $user->setName('UserName '.$i);
@@ -57,10 +44,25 @@ class AppFixtures extends Fixture
             $booking->setFlight($flight);
             $booking->setUsers($user);
             $user->setBookings([$booking]);
-            $user->setAncillaries([$ancillary]);
+            $users[] = $user;
 
             $manager->persist($booking);
             $manager->persist($user);
+        }
+
+        // We create the ancillaries
+        foreach ($users as $user) {
+            $now = new \DateTime();
+
+            $ancillary = new Ancillary();
+            $ancillary->setType('Extra Space');
+            $ancillary->setDate($now);
+            $ancillary->setPointsGiven(5);
+            $ancillary->setPointsNeeded(15);
+            $ancillary->setValue($i+1);
+            $ancillary->setUser($user);
+
+            $manager->persist($ancillary);
         }
 
         $manager->flush();

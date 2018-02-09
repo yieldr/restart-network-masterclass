@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * A user.
  *
  * @ApiResource
+ *
  * @ORM\Entity
  */
 class User
