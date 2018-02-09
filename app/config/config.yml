@@ -90,3 +90,7 @@ api_platform:
 #        shared_max_age: 3600
 #        vary: ['Content-Type', 'Authorization']
 #        public: true
+    collection:
+        pagination:
+            client_items_per_page: true
+            items_per_page_parameter_name: itemsPerPage
