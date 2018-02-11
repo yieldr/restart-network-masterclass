@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
             $flight->setSeatsAvailable($i);
             $flight->setOrigin('AMS');
             $flight->setDestination('BAR');
-            $flight->setScheduledDepartureTime((new \DateTime())->modify("-".($i%5)."day"));
+            $flight->setScheduledDepartureTime((new \DateTime())->modify("+".($i%5)."day"));
             $flight->setValue(10);
 
             $flights[] = $flight;
