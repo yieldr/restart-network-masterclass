@@ -19,6 +19,7 @@ class AppFixtures extends Fixture
         $now = new \DateTime();
 
         // We create the flights
+        $flights = [];
         for ($i = 0; $i < 100; $i++) {
 
             $flight = new Flight();
@@ -27,8 +28,10 @@ class AppFixtures extends Fixture
             $flight->setSeatsAvailable($i);
             $flight->setOrigin('AMS');
             $flight->setDestination('BAR');
-            $flight->setScheduledDepartureTime($now);
+            $flight->setScheduledDepartureTime((new \DateTime())->modify("-".($i%5)."day"));
             $flight->setValue(10);
+
+            $flights[] = $flight;
 
             $manager->persist($flight);
         }
@@ -41,7 +44,7 @@ class AppFixtures extends Fixture
             $user->setEmail('whatever'.$i.'@gmail.com');
             $user->setLocation('Amsterdam');
             $booking = new Booking();
-            $booking->setFlight($flight);
+            $booking->setFlight($flights[$i]);
             $booking->setUsers($user);
             $user->setBookings([$booking]);
             $user->setPoints($i);
