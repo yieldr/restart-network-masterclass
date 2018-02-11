@@ -45,8 +45,9 @@ class AppFixtures extends Fixture
             $booking->setUsers($user);
             $user->setBookings([$booking]);
             $user->setPoints($i);
-            $users[] = $user;
+            $user->setLastSeen((new \DateTime())->modify("-".($i%10)."day"));
 
+            $users[] = $user;
             $manager->persist($booking);
             $manager->persist($user);
         }
