@@ -9,8 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * A user.
  *
- * @ApiResource(attributes={"filters"={"user.order_filter"}})
- *
+ * @ApiResource
  * @ORM\Entity
  */
 class User
@@ -81,9 +80,9 @@ class User
     /**
      * @var Booking[] Bookings that this user made.
      *
-     * @ORM\OneToMany(targetEntity="Booking", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Flight", inversedBy="users")
      */
-    private $bookings;
+    private $flights;
 
     /**
      * @return int
@@ -200,20 +199,16 @@ class User
     /**
      * @return Booking[]
      */
-    public function getBookings()
+    public function getFlights()
     {
-        return $this->bookings;
+        return $this->flights;
     }
 
     /**
-     * @param $bookings
-     *
-     * @return $this
+     * @param Booking[] $flights
      */
-    public function setBookings($bookings)
+    public function setFlights($flights)
     {
-        $this->bookings = $bookings;
-
-        return $this;
+        $this->flights = $flights;
     }
 }
