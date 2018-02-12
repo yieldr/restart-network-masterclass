@@ -18,7 +18,21 @@ class AppFixtures extends Fixture
     {
         $now = new \DateTime();
 
-        // We create the flights
+
+        // We create the users
+        $users = [];
+        for ($i = 0; $i < 100; $i++) {
+            $user = new User();
+            $user->setName('UserName '.$i);
+            $user->setEmail('whatever'.$i.'@gmail.com');
+            $user->setLocation('Amsterdam');
+            $user->setPoints($i);
+            $user->setLastSeen((new \DateTime())->modify("-".($i%10)."day"));
+
+            $users[] = $user;
+            $manager->persist($user);
+        }
+        // We create the flights bought by some users
         $flights = [];
         for ($i = 0; $i < 100; $i++) {
 
@@ -30,29 +44,12 @@ class AppFixtures extends Fixture
             $flight->setDestination('BAR');
             $flight->setScheduledDepartureTime((new \DateTime())->modify("+".($i%5)."day"));
             $flight->setValue(10);
+            $users[$i]->setFlights([$flight]);
+            $flight->setUsers([$users[$i]]);
 
             $flights[] = $flight;
 
             $manager->persist($flight);
-        }
-
-        // We create the users with some bookings
-        $users = [];
-        for ($i = 0; $i < 100; $i++) {
-            $user = new User();
-            $user->setName('UserName '.$i);
-            $user->setEmail('whatever'.$i.'@gmail.com');
-            $user->setLocation('Amsterdam');
-            $booking = new Booking();
-            $booking->setFlight($flights[$i]);
-            $booking->setUsers($user);
-            $user->setBookings([$booking]);
-            $user->setPoints($i);
-            $user->setLastSeen((new \DateTime())->modify("-".($i%10)."day"));
-
-            $users[] = $user;
-            $manager->persist($booking);
-            $manager->persist($user);
         }
 
         // We create the ancillaries
