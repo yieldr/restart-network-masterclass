@@ -5,3 +5,11 @@ api:
 app:
     resource: '@AppBundle/Action/'
     type: 'annotation'
+
+user_flight_yesterday:
+    path: '/flights/{id}/yesterday'
+    methods:  ['GET']
+    defaults:
+        _controller: 'AppBundle:Flight:yesterday'
+        _api_resource_class: 'AppBundle\Entity\Flight'
+        _api_item_operation_name: 'best'

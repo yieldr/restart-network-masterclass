@@ -6,3 +6,7 @@ services:
     #    parent: 'api_platform.doctrine.orm.search_filter'
     #    arguments: [ { id: 'exact', bar: 'partial' } ]
     #    tags: ['api_platform.filter']
+  user.order_filter:
+    parent: 'api_platform.doctrine.orm.order_filter'
+    arguments: [ { id: ~, name: ~,  points: ~, last_seen: ~} ]
+    tags: [ 'api_platform.filter' ]
