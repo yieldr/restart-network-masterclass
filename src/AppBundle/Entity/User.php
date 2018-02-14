@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * A user.
  *
- * @ApiResource
+ * @ApiResource(attributes={"filters"={"user.order_filter"}})
  * @ORM\Entity
  */
 class User
