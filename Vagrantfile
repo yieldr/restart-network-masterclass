@@ -28,7 +28,9 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
-  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  config.vm.network "forwarded_port", guest: 444, host: 444
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -49,13 +51,13 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    # vb.gui = true
+
+    # Customize the amount of memory on the VM:
+    vb.memory = "4096"
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -71,20 +73,35 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+
+    sudo cat << EOF > /etc/environment
+LANG=en_US.utf-8
+LC_ALL=en_US.utf-8
+EOF
+
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password 1234'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password 1234'
+
     sudo apt-get update
-    sudo apt-get install -y php7.0
-    sudo apt-get install -y php7.0-mysql
-    
-    sudo apt-get install -y curl php-cli git unzip
+    sudo apt-get install -y \
+      curl \
+      git \
+      unzip \
+      mysql-server \
+      php-cli \
+      php7.0 \
+      php7.0-mysql \
+      php7.0-mbstring \
+      php7.0-dom
+
     curl -sS https://getcomposer.org/installer -o composer-setup.php
     sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-    export LC_ALL=en_US.UTF-8
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
-    sudo apt-get -y install mysql-server
+    mysql -u root -p1234 << EOF
+CREATE USER 'api_platform'@'localhost' IDENTIFIED BY 'api_platform';
+GRANT ALL PRIVILEGES ON * . * TO 'api_platform'@'localhost';
+EOF
 
-  SHELL
-
+SHELL
 
 end
