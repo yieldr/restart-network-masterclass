@@ -6,18 +6,10 @@ app:
     resource: '@AppBundle/Action/'
     type: 'annotation'
 
-user_special:
-    path: '/users/{id}/best'
+user_flight_yesterday:
+    path: '/flights/{id}/yesterday'
     methods:  ['GET']
     defaults:
-        _controller: 'AppBundle:User:best'
-        _api_resource_class: 'AppBundle\Entity\User'
-        _api_item_operation_name: 'best'
-
-users_best:
-    path: '/users/best'
-    methods:  ['GET']
-    defaults:
-        _controller: 'AppBundle:User:best'
-        _api_resource_class: 'AppBundle\Entity\User'
+        _controller: 'AppBundle:Flight:yesterday'
+        _api_resource_class: 'AppBundle\Entity\Flight'
         _api_item_operation_name: 'best'
