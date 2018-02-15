@@ -38,8 +38,8 @@ class AppFixtures extends Fixture
 
             $flight = new Flight();
             $flight->setNumber($i);
-            $flight->setSeats(100+$i);
-            $flight->setSeatsAvailable($i);
+            $flight->setSeats(($i%3 +1) * 100);
+            $flight->setSeatsAvailable($flight->getSeats() - (($i%3 +1) * 9));
             $flight->setOrigin('AMS');
             $flight->setDestination('BAR');
             $flight->setScheduledDepartureTime((new \DateTime())->modify("+".($i%5)."day"));
@@ -52,12 +52,21 @@ class AppFixtures extends Fixture
             $manager->persist($flight);
         }
 
+        $ancillaryTypes = [
+            'Food & Beverage',
+            'Extra Leg Room',
+            'Car Rental',
+            'Hotel',
+            'Insurance',
+            'Check-in Baggage'
+        ];
+
         // We create the ancillaries
-        foreach ($users as $user) {
+        foreach ($users as $i => $user) {
             $now = new \DateTime();
 
             $ancillary = new Ancillary();
-            $ancillary->setType('Extra Space');
+            $ancillary->setType($ancillaryTypes[$i % count($ancillaryTypes)]);
             $ancillary->setDate($now);
             $ancillary->setPointsGiven(5);
             $ancillary->setPointsNeeded(15);
