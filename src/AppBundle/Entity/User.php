@@ -21,7 +21,7 @@ class User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      *
-     * @Assert\Blank
+     * @Assert\NotBlank
      */
     private $id;
 
