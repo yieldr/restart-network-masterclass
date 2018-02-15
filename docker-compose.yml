@@ -29,12 +29,14 @@ services:
       - MYSQL_DATABASE=api_platform
       # You should definitely change the password in production
       - MYSQL_PASSWORD=api_platform
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=api_platform
       - MYSQL_USER=api_platform
     volumes:
       - db-data:/var/lib/mysql:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/mysql:rw
+    ports:
+      - "3506:3306"
   nginx:
     build:
       context: ./docker/nginx

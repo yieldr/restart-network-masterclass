@@ -21,7 +21,7 @@ class Flight
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      *
-     * @Assert\Blank
+     * @Assert\NotBlank
      */
     private $id;
 
@@ -100,7 +100,7 @@ class Flight
     /**
      * @var User[] Users that bought this flight.
      *
-     * @ORM\OneToMany(targetEntity="Booking", mappedBy="flight")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="flights")
      */
     private $users;
 

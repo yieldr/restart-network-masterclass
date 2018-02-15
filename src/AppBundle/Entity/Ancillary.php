@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,7 +21,7 @@ class Ancillary
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      *
-     * @Assert\Blank
+     * @Assert\NotBlank
      */
     private $id;
 
