@@ -3,33 +3,74 @@
 # Introduction
 
 For this tutorial we will be using the [Api Platform](https://api-platform.com/) framework which is built on top of
-[Symfony](https://symfony.com/).
+[Symfony](https://symfony.com/) and [Composer](https://getcomposer.org/) as our dependency manager.
 
-# Installation
+# Challenge description
 
-To begin with this tutorial, you will need to clone the project we have prepared for you from 
-[github](https://github.com/yieldr/restart-network-masterclass). You can do this in your command line by typing: 
+Today's challenge is split in 5 stages:
+
+- 1 - Getting Started
+- 2 - Create Entities
+- 3 - Validation & Filters
+- 4 - Controllers
+- 5 - Tests
+
+## 0 - Setup
+
+Clone the repository of this workshop by running the following command in your terminal:
 
 ```bash
-$: git clone https://github.com/yieldr/restart-network-masterclass.git 
+git clone https://github.com/yieldr/restart-network-masterclass.git
 ```
 
-Assuming you have composer installed in your computer, we will use it to install the project's dependencies.
-To do so, navigate to the directory where the project was cloned (e.g `cd Documents/restart-network-masterclass`) and
-run the following command in the terminal:
+Next change into the projects directory
 
 ```bash
-$: composer install
+cd restart-network-masterclass
 ```
 
-If the command above completed successfully you project's dependencies are succesfully imported under the `vendor` directory.  
+Now it's time to set up our environment. From inside the `restart-network-masterclass` directory run:
 
-Next you will need to update the configuration file of the project, which can be found in the `app/config` directory.
- 
-Here you can set up doctrine to connect with your mysql database. If you open the `config.yml` file you will see
-that the structure already exists, you just need to provide the correct values for your environment.
+```bash
+vagrant up
+```
 
-# Challenge
+This command will create an Ubuntu Linux virtual machine and install necessary software such as PHP7 and MySQL. The 
+contents of this directory will be synchronized inside this virtual machine under the `/vagrant` directory.
+
+Once the installation is complete run the following command to access the virtual machine:
+
+```bash
+vagrant ssh
+```
+
+From this moment onwards, this is the environment we will be working in.
+
+Now lets change directory to where vagrant has synchronized our project files and inspect the files within that folder:
+
+```bash
+cd /vagrant
+ls
+```
+
+## 1 - Getting Started
+
+- Step 1: Create a fresh installation of api-platform
+
+```bash
+composer create-project api-platform/api-platform 0-workspace "2.1.*"
+cd 0-workspace
+```
+
+You will be prompted to enter a few configuration preferences which also provide default values. Just press enter for all
+of them and the defaults will be picked up.
+
+In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update
+them with your preferred values :)
+
+**Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
+
+## 2 - Create the entities
 
 As described in the presentation of ORM, each database table is represented by an entity class which can be found under 
 the `src/AppBundle/Entity` directory.
@@ -38,19 +79,15 @@ There are 4 Entities which represent the ancillaries, bookings, flights and the 
 
 The Users Entity is complete and contains all the required mappings and validation requirements.
 
-### Task 1 : Creating the mappings
-
-Your first task is to update the other three Entities by creating the appropriate fields and map them to the database fields.
-
-### Task 2 : Adding validation
+## 3 - Add validation
 
 After completing task 1, it is time to add validation to our Entities. Validation is very important since we only allow
 incoming data to have a specific format. To do so, you need to read carefully the high level requirements for each entity
 and decide what are the appropriate validation rules.
 
-### Task 3 : Creating the controllers (?)
+## 4 - Create the controllers
 
-### Task 4 : Adding unit tests
+## 5 - Add unit tests
 
 Unit tests are important for every application because if they are created and maintained carefully they can point out
 potential bugs after adding new features.
@@ -67,5 +104,3 @@ point out that there is something wrong with the validation.
 Your task is to write unit tests which verify that all the business requirements are met at all times.
 
 Again you can see how a unit test looks like by looking at the UsersTest.
-
-
