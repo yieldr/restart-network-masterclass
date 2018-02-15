@@ -17,32 +17,40 @@ Today's challenge is split in 5 stages:
 
 ## 0 - Setup
 
-Clone the repository of this workshop by issuing the following command in your terminal:
+Clone the repository of this workshop by running the following command in your terminal:
 
 ```bash
-$: git clone https://github.com/yieldr/restart-network-masterclass.git
+git clone https://github.com/yieldr/restart-network-masterclass.git
 ```
 
-Now it's time to set up our environment. Inside the `restart-network-masterclass` directory run:
+Next change into the projects directory
 
 ```bash
-$: vagrant up
+cd restart-network-masterclass
 ```
 
-This command will create the virtual machine and put the contents of this directory in it.
+Now it's time to set up our environment. From inside the `restart-network-masterclass` directory run:
+
+```bash
+vagrant up
+```
+
+This command will create an Ubuntu Linux virtual machine and install necessary software such as PHP7 and MySQL. The 
+contents of this directory will be synchronized inside this virtual machine under the `/vagrant` directory.
 
 Once the installation is complete run the following command to access the virtual machine:
 
 ```bash
-$: vagrant ssh
+vagrant ssh
 ```
 
-Now inside the machine you need to access the directory which is mapped with your computer. Vagrant put our directory
-under `/vagrant` by default. Now run the following commands:
+From this moment onwards, this is the environment we will be working in.
+
+Now lets change directory to where vagrant has synchronized our project files and inspect the files within that folder:
 
 ```bash
-$: cd /vagrant                      Access the restart-network-masterclass content
-$: ls                               List the contents of the directory to see the repository
+cd /vagrant
+ls
 ```
 
 ## 1 - Getting Started
@@ -50,7 +58,8 @@ $: ls                               List the contents of the directory to see th
 - Step 1: Create a fresh installation of api-platform
 
 ```bash
-$: composer create-project api-platform/api-platform 0-workspace
+composer create-project api-platform/api-platform 0-workspace "2.1.*"
+cd 0-workspace
 ```
 
 You will be prompted to enter a few configuration preferences which also provide default values. Just press enter for all

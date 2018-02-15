@@ -79,21 +79,23 @@ Vagrant.configure("2") do |config|
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 EOF
+    sudo apt-get install -y python-software-properties
+    sudo add-apt-repository -y ppa:ondrej/php
+    sudo apt-get update -y
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password 1234'
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password 1234'
 
-    sudo apt-get update
     sudo apt-get install -y \
       curl \
       git \
       unzip \
       mysql-server \
       php-cli \
-      php7.0 \
-      php7.0-mysql \
-      php7.0-mbstring \
-      php7.0-dom
+      php7.1 \
+      php7.1-mysql \
+      php7.1-mbstring \
+      php7.1-dom
 
     curl -sS https://getcomposer.org/installer -o composer-setup.php
     sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
