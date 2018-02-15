@@ -7,28 +7,33 @@ For this tutorial we will be using the [Api Platform](https://api-platform.com/)
 
 # Installation
 
-To begin with this tutorial, you will need to clone the project we have prepared for you from 
-[github](https://github.com/yieldr/restart-network-masterclass). You can do this in your command line by typing: 
+For this tutorial we will be using [Composer](https://getcomposer.org/)
+
+- Step 1: Create a fresh installation of api-platform
 
 ```bash
-$: git clone https://github.com/yieldr/restart-network-masterclass.git 
+$: composer create-project api-platform/api-platform restart
 ```
 
-Assuming you have composer installed in your computer, we will use it to install the project's dependencies.
-To do so, navigate to the directory where the project was cloned (e.g `cd Documents/restart-network-masterclass`) and
-run the following command in the terminal:
+You will be prompted to enter a few configuration preferences:
 
+```
+database_host : localhost
+database_port: 3306
+database_name: api-platform
+database_user: api-platform
+database_password: 1234
+(The rest you can skip them and the defaults will be used)
+```
+In case you entered any of the above wrong, don't worry! Just go to the `app/config/parameters.yml` file and update
+them with your preferred values :)
+
+- Step 2: Place the `Vagrantfile` that was provided you you under the root (`restart`) directory and run
 ```bash
-$: composer install
+$: vagrant up
 ```
 
-If the command above completed successfully you project's dependencies are succesfully imported under the `vendor` directory.  
-
-Next you will need to update the configuration file of the project, which can be found in the `app/config` directory.
- 
-Here you can set up doctrine to connect with your mysql database. If you open the `config.yml` file you will see
-that the structure already exists, you just need to provide the correct values for your environment.
-
+**Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
 # Challenge
 
 As described in the presentation of ORM, each database table is represented by an entity class which can be found under 
