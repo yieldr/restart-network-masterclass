@@ -16,10 +16,11 @@ class TestFlights extends WebTestCase
         $content = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertEquals(0, $content[0]['number']);
+        $this->assertGreaterThan(0, $content[0]['seats']);
         $this->assertEquals(100, $content[0]['seats']);
         $this->assertEquals('AMS', $content[0]['origin']);
         $this->assertEquals('BAR', $content[0]['destination']);
-        $this->assertNull($content[0]['departureTime']);
+        $this->assertNotNull($content[0]['departureTime']);
         $this->assertEquals(0, $content[0]['seatsAvailable']);
         $this->assertEquals(10, $content[0]['value']);
     }
@@ -34,6 +35,7 @@ class TestFlights extends WebTestCase
         $content = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertEquals('UserName 0', $content[0]['name']);
+        $this->assertContains('@', $content[0]['email']);
         $this->assertEquals('whatever0@gmail.com', $content[0]['email']);
         $this->assertEquals(0, $content[0]['points']);
     }

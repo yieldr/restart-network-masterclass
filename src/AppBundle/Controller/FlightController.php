@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class FlightController extends Controller
 {
-    public function yesterdayAction(Flight $flight)
+    public function topUsersAction(Flight $flight)
     {
         $entityManager = $this->get('doctrine.orm.entity_manager');
 
