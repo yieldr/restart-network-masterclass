@@ -16,19 +16,18 @@ class TestFlights extends WebTestCase
         $content = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertEquals(0, $content[0]['number']);
-        $this->assertGreaterThan(0, $content[0]['seats']);
-        $this->assertEquals(100, $content[0]['seats']);
+        $this->assertGreaterThan(1, $content[0]['seats']);
         $this->assertEquals('AMS', $content[0]['origin']);
         $this->assertEquals('BAR', $content[0]['destination']);
-        $this->assertNotNull($content[0]['departureTime']);
-        $this->assertEquals(0, $content[0]['seatsAvailable']);
+        $this->assertNull($content[0]['departureTime']);
+        $this->assertEquals(91, $content[0]['seatsAvailable']);
         $this->assertEquals(10, $content[0]['value']);
     }
 
     public function testGetFlightsYesterday()
     {
         $client = static::createClient();
-        $client->request('GET', '/flights/101/yesterday', [], [], ['HTTP_ACCEPT' => 'application/json']);
+        $client->request('GET', '/flights/1/topusers', [], [], ['HTTP_ACCEPT' => 'application/json']);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
@@ -58,7 +57,7 @@ class TestFlights extends WebTestCase
             }
 JSON;
 
-        $client->request('PUT', '/flights/200', [], [], ['HTTP_ACCEPT' => 'application/json', 'CONTENT_TYPE' => 'application/json'], $body);
+        $client->request('PUT', '/flights/100', [], [], ['HTTP_ACCEPT' => 'application/json', 'CONTENT_TYPE' => 'application/json'], $body);
 
         $content = json_decode($client->getResponse()->getContent(), true);
 
