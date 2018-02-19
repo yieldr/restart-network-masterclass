@@ -84,8 +84,8 @@ EOF
       git \
       unzip \
       mysql-server \
-      php-cli \
       php7.1 \
+      php7.1-cli \
       php7.1-mysql \
       php7.1-mbstring \
       php7.1-dom
