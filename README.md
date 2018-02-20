@@ -75,17 +75,66 @@ them with your preferred values :)
 As described in the presentation of ORM, each database table is represented by an entity class which can be found under 
 the `src/AppBundle/Entity` directory.
 
-There are 4 Entities which represent the ancillaries, bookings, flights and the users. 
+There are 3 Entities which represent the ancillaries, flights and the users. 
 
 The Users Entity is complete and contains all the required mappings and validation requirements.
 
-## 3 - Add validation
+## 3 - Add validation, filters, and pagination
 
 After completing task 1, it is time to add validation to our Entities. Validation is very important since we only allow
 incoming data to have a specific format. To do so, you need to read carefully the high level requirements for each entity
 and decide what are the appropriate validation rules.
 
+### 3.1 Validation
+ 
+Validation will be done through annotations so, for example, you can just put `@Assert\NotBlank` as a comment
+on top of a property and it will automatically apply that validation when doing a `POST` or a `PUT`.
+
+Don't forget to import the `@Assert` by putting this on top of the file: `use Symfony\Component\Validator\Constraints as Assert;`
+
+Here you can learn more about validation and all the different possibilities that it allows us to have: http://symfony.com/doc/current/validation.html
+
+### 3.2 Filters 
+
+Now let's add some filters. Filters are useful because they help us to easily change the response based on certain parameters. 
+For example, what if we have to order the users from the ones that have more points to the ones that have the least? Or order them by the last time they have been active?
+
+Using filters makes this a very easy task. We just need to add `@ApiResource(attributes={"filters"={"user.order_filter"}})` as a comment on top of the class and that's it!
+
+If we now go to: `/users?order[points]=desc`, we should be able to obtain the users ordered by their amount of points from bigger to smaller.
+
+You can read more about ordered filters here: https://api-platform.com/docs/core/filters/#order-filter
+
+Of course, there are more types of filters, which can be found in this URL: https://api-platform.com/docs/core/filters
+
 ## 4 - Create the controllers
+
+Let's say that the airline company wants to send a promotion to certain users and asks us to be able to do the following:
+
+`For each flight we want to get the email, name and points of the users who purchased it and were active since yesterday.`
+
+We can't use any of the features that API Platform provides us, but instead we need to make them on our own.
+
+The first step to do this is create a new endpoint (/flights/{id}/topusers) that will retrieve this information. 
+In order to do this, we first need to create the endpoint in the routing.yml, located in the config folder, and specify the following:
+
+``` yaml
+user_flight_topusers:
+    path: '/flights/{id}/topusers'
+    methods:  ['GET']
+    defaults:
+        _controller: 'AppBundle:Flight:topUsers'
+        _api_resource_class: 'AppBundle\Entity\Flight'
+        _api_item_operation_name: 'topUsers'
+``` 
+
+Now we can create a controller called FlightController in the `src/AppBundle/Controller` directory with a function called topUsersAction
+that will receive a flight.
+
+The full example is explained at the end of the page, in the paragraph starting with "Alternatively, you can also use...": 
+https://api-platform.com/docs/core/operations/#creating-custom-operations-and-controllers
+
+Inside there we can create our own code to achieve what the airline asked us.
 
 ## 5 - Add unit tests
 
@@ -103,4 +152,4 @@ point out that there is something wrong with the validation.
 
 Your task is to write unit tests which verify that all the business requirements are met at all times.
 
-Again you can see how a unit test looks like by looking at the UsersTest.
+Again, you can see how a unit test looks like by looking at the UsersTest.
