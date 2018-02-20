@@ -83,18 +83,18 @@ incoming data to have a specific format. To do so, you need to read carefully th
 and decide what are the appropriate validation rules.
 
 ### 3.1 Validation
- 
+
 Validation will be done through annotations so, for example, you can just put `@Assert\NotBlank` as a comment
 on top of a property and it will automatically apply that validation when doing a `POST` or a `PUT`.
 
 Don't forget to import the `@Assert` by putting this on top of the file: `use Symfony\Component\Validator\Constraints as Assert;`
 
-Here you can learn more about validation and all the different possibilities that it allows us to have: 
+Here you can learn more about validation and all the different possibilities that it allows us to have:
 http://symfony.com/doc/current/validation.html
 
-### 3.2 Filters 
+### 3.2 Filters
 
-Now let's add some filters. Filters are useful because they help us to easily change the response based on certain parameters. 
+Now let's add some filters. Filters are useful because they help us to easily change the response based on certain parameters.
 For example, what if we have to order the users from the ones that have more points to the ones that have the least? Or order them by the last time they have been active?
 
 Using filters makes this a very easy task. We just need to add `@ApiResource(attributes={"filters"={"user.order_filter"}})` as a comment on top of the class and that's it!
@@ -109,11 +109,11 @@ Of course, there are more types of filters, which can be found in this URL: http
 
 Let's say that the airline company wants to send a promotion to certain users and asks us to be able to do the following:
 
-`For each flight we want to get the email, name and points of the users who purchased it and were active since yesterday.`
+> For each flight we want to get the email, name and points of the users who purchased it and were active since yesterday.`
 
 We can't use any of the features that API Platform provides us, but instead we need to make them on our own.
 
-The first step to do this is create a new endpoint `/flights/{id}/topusers` that will retrieve this information. 
+The first step to do this is create a new endpoint `/flights/{id}/topusers` that will retrieve this information.
 In order to do this, we first need to create the endpoint in the routing.yml, located in the config folder, and specify the following:
 
 ``` yaml
@@ -124,13 +124,13 @@ user_flight_topusers:
         _controller: 'AppBundle:Flight:topUsers'
         _api_resource_class: 'AppBundle\Entity\Flight'
         _api_item_operation_name: 'topUsers'
-``` 
+```
 #### Case 1
 
 Now we can create a controller called FlightController in the `src/AppBundle/Controller` directory with a function called topUsersAction
 that will receive a flight.
 
-The full example is explained at the end of the page, in the paragraph starting with "Alternatively, you can also use...": 
+The full example is explained at the end of the page, in the paragraph starting with "Alternatively, you can also use...":
 https://api-platform.com/docs/core/operations/#creating-custom-operations-and-controllers
 
 Inside there we can create our own code to achieve what the airline asked us.
