@@ -65,9 +65,17 @@ You will be prompted to enter a few configuration preferences which also provide
 
 In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update them with your preferred values :)
 
+Our project skeleton is set up! To test it, lets start a web server.
+
+```bash
+php bin/console server:start 0.0.0.0:8000
+```
+
+Next, visit [192.168.33.10:8000](http://192.168.33.10:8000/) in your browser.
+
 **Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
 
-## 2 - Create the entities
+## 2 - Create some entities
 
 As described in the presentation of ORM, each database table is represented by an entity class which can be found under
 the `src/AppBundle/Entity` directory.
@@ -114,7 +122,7 @@ Let's say that the airline company wants to send a promotion to certain users an
 We can't use any of the features that API Platform provides us, but instead we need to make them on our own.
 
 The first step to do this is create a new endpoint `/flights/{id}/topusers` that will retrieve this information.
-In order to do this, we first need to create the endpoint in the routing.yml, located in the config folder, and specify the following:
+In order to do this, we first need to create the endpoint in the `routing.yml`, located in the config folder, and specify the following:
 
 ``` yaml
 user_flight_topusers:
@@ -125,30 +133,31 @@ user_flight_topusers:
         _api_resource_class: 'AppBundle\Entity\Flight'
         _api_item_operation_name: 'topUsers'
 ```
-#### Case 1
 
-Now we can create a controller called FlightController in the `src/AppBundle/Controller` directory with a function called topUsersAction
-that will receive a flight.
+Now we can create a controller called `FlightController` in the `src/AppBundle/Controller` directory with a function called `topUsersAction` that will receive a flight.
 
 The full example is explained at the end of the page, in the paragraph starting with "Alternatively, you can also use...":
+
 https://api-platform.com/docs/core/operations/#creating-custom-operations-and-controllers
 
 Inside there we can create our own code to achieve what the airline asked us.
 
-#### Case 2
+## 5 - Add unit tests
+
+Unit tests are important for every application because if they are created and maintained carefully they can point out potential bugs after adding new features.
+
+For example, let's say we have a validation rule which states that any new flight added to the database must not have the same origin and destination. We also have a unit test for this in place, where we test the following two cases.
+
+### Case 1
+
+The request's origin and destination fields are exactly the same therefore the validation should fail.
+
+### Case 2
 
 The request's origin and destination fields are different so the validation should pass.
-potential bugs after adding new features.
 
-For example, let's say we have a validation rule which states that any new flight added to the database must not have the
-same origin and destination. We also have a unit test for this in place, where we test two cases:
-
-- Case 1: The request's origin and destination fields are exactly the same therefore the validation should fail.
-- Case 2: The request's origin and destination fields are different so the validation should pass.
-
-If for any reason the validation is removed from the Entity because of a developer's mistake, case 1 will fail and
-point out that there is something wrong with the validation.
+If for any reason the validation is removed from the Entity because of a developer's mistake, case 1 will fail and point out that there is something wrong with the validation.
 
 Your task is to write unit tests which verify that all the business requirements are met at all times.
 
-Again, you can see how a unit test looks like by looking at the TestFlights.
+Again, you can see how a unit test looks like by looking at the `TestFlights`.
