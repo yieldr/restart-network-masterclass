@@ -52,7 +52,7 @@ cd /vagrant
 ls
 ```
 
-## 1 - Create a fresh installation of api-platform
+## 1 Create a fresh installation of api-platform
 
 ```bash
 composer create-project api-platform/api-platform 0-workspace "2.1.*"
@@ -73,7 +73,7 @@ Next, visit [192.168.33.10:8000](http://192.168.33.10:8000/) in your browser.
 
 **Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
 
-## 2 - Create some entities
+## 2 Create some entities
 
 As described in the presentation of ORM, each database table is represented by an entity class which can be found under
 the `src/AppBundle/Entity` directory.
@@ -82,7 +82,7 @@ There are 3 Entities which represent users, flights and ancillaries.
 
 The Users Entity is complete and contains all the required mappings and validation requirements.
 
-## 3 - Add validation, filters, and pagination
+## 3 Add validation, filters, and pagination
 
 After completing task 1, it is time to add validation to our Entities. Validation is very important since we only allow
 incoming data to have a specific format. To do so, you need to read carefully the high level requirements for each entity
@@ -111,7 +111,7 @@ You can read more about ordered filters here: https://api-platform.com/docs/core
 
 Of course, there are more types of filters, which can be found in this URL: https://api-platform.com/docs/core/filters
 
-## 4 - Create the controllers
+## 4 Create the controllers
 
 Let's say that the airline company wants to send a promotion to certain users and asks us to be able to do the following:
 
@@ -140,7 +140,7 @@ https://api-platform.com/docs/core/operations/#creating-custom-operations-and-co
 
 Inside there we can create our own code to achieve what the airline asked us.
 
-## 5 - Add unit tests
+## 5 Add unit tests
 
 Unit tests are important for every application because if they are created and maintained carefully they can point out potential bugs after adding new features.
 
