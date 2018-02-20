@@ -62,8 +62,8 @@ composer create-project api-platform/api-platform 0-workspace "2.1.*"
 cd 0-workspace
 ```
 
-You will be prompted to enter a few configuration preferences which also provide default values. Just press enter for all
-of them and the defaults will be picked up.
+You will be prompted to enter a few configuration preferences which also provide default values. Use `localhost` as the 
+ database host and just press enter for the rest of them and the defaults will be picked up.
 
 In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update
 them with your preferred values :)
