@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Controller/BookController.php
 
 namespace AppBundle\Controller;
 
@@ -21,18 +20,18 @@ class FlightController extends Controller
 
         // Solution 1:
 
-//        $connection = $entityManager->getConnection();
-//
-//        $sql = "SELECT u.name, u.email, u.points
-//                FROM `user` u
-//                INNER JOIN user_flight uf ON u.id = uf.`user_id`
-//                INNER JOIN flight f ON f.id = uf.`flight_id`
-//                WHERE f.id = $flightId AND u.`last_seen` > " . "'" . $todayFormatted . "'" . " AND u.`last_seen` < " . "'" . $tomorrowFormatted . "'";
-//
-//        $statement = $connection->executeQuery($sql);
-//        $result = $statement->fetchAll();
-//
-//        return new JsonResponse($result);
+        // $connection = $entityManager->getConnection();
+
+        // $sql = "SELECT u.name, u.email, u.points
+        //         FROM `user` u
+        //         INNER JOIN user_flight uf ON u.id = uf.`user_id`
+        //         INNER JOIN flight f ON f.id = uf.`flight_id`
+        //         WHERE f.id = $flightId AND u.`last_seen` > " . "'" . $todayFormatted . "'" . " AND u.`last_seen` < " . "'" . $tomorrowFormatted . "'";
+
+        // $statement = $connection->executeQuery($sql);
+        // $result = $statement->fetchAll();
+
+        // return new JsonResponse($result);
 
         // Solution 2:
 
@@ -50,4 +49,3 @@ class FlightController extends Controller
         return new JsonResponse($result);
     }
 }
-
