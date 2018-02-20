@@ -9,13 +9,13 @@ For this tutorial we will be using the [Api Platform](https://api-platform.com/)
 
 Today's challenge is split in 5 stages:
 
-- 1 - Getting Started
-- 2 - Create Entities
-- 3 - Validation & Filters
-- 4 - Controllers
-- 5 - Tests
+1. Getting Started
+2. Create Entities
+3. Validation & Filters
+4. Controllers
+5. Tests
 
-## 0 - Setup
+## Let's Begin!
 
 Clone the repository of this workshop by running the following command in your terminal:
 
@@ -35,8 +35,7 @@ Now it's time to set up our environment. From inside the `restart-network-master
 vagrant up
 ```
 
-This command will create an Ubuntu Linux virtual machine and install necessary software such as PHP7 and MySQL. The 
-contents of this directory will be synchronized inside this virtual machine under the `/vagrant` directory.
+This command will create an Ubuntu Linux virtual machine and install necessary software such as PHP7 and MySQL. The contents of this directory will be synchronized inside this virtual machine under the `/vagrant` directory.
 
 Once the installation is complete run the following command to access the virtual machine:
 
@@ -62,20 +61,18 @@ composer create-project api-platform/api-platform 0-workspace "2.1.*"
 cd 0-workspace
 ```
 
-You will be prompted to enter a few configuration preferences which also provide default values. Use `localhost` as the 
- database host and just press enter for the rest of them and the defaults will be picked up.
+You will be prompted to enter a few configuration preferences which also provide default values. Set `database_host` to `localhost` and the rest just press enter for all of them and the defaults will be used.
 
-In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update
-them with your preferred values :)
+In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update them with your preferred values :)
 
 **Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
 
 ## 2 - Create the entities
 
-As described in the presentation of ORM, each database table is represented by an entity class which can be found under 
+As described in the presentation of ORM, each database table is represented by an entity class which can be found under
 the `src/AppBundle/Entity` directory.
 
-There are 3 Entities which represent the ancillaries, flights and the users. 
+There are 3 Entities which represent users, flights and ancillaries.
 
 The Users Entity is complete and contains all the required mappings and validation requirements.
 
@@ -128,6 +125,7 @@ user_flight_topusers:
         _api_resource_class: 'AppBundle\Entity\Flight'
         _api_item_operation_name: 'topUsers'
 ``` 
+#### Case 1
 
 Now we can create a controller called FlightController in the `src/AppBundle/Controller` directory with a function called topUsersAction
 that will receive a flight.
@@ -137,9 +135,9 @@ https://api-platform.com/docs/core/operations/#creating-custom-operations-and-co
 
 Inside there we can create our own code to achieve what the airline asked us.
 
-## 5 - Add unit tests
+#### Case 2
 
-Unit tests are important for every application because if they are created and maintained carefully they can point out
+The request's origin and destination fields are different so the validation should pass.
 potential bugs after adding new features.
 
 For example, let's say we have a validation rule which states that any new flight added to the database must not have the
@@ -148,7 +146,7 @@ same origin and destination. We also have a unit test for this in place, where w
 - Case 1: The request's origin and destination fields are exactly the same therefore the validation should fail.
 - Case 2: The request's origin and destination fields are different so the validation should pass.
 
-If for any reason the validation is removed from the Entity because of a developer's mistake, case 1 will fail and 
+If for any reason the validation is removed from the Entity because of a developer's mistake, case 1 will fail and
 point out that there is something wrong with the validation.
 
 Your task is to write unit tests which verify that all the business requirements are met at all times.
