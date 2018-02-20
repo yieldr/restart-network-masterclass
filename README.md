@@ -109,7 +109,7 @@ Of course, there are more types of filters, which can be found in this URL: http
 
 Let's say that the airline company wants to send a promotion to certain users and asks us to be able to do the following:
 
-> For each flight we want to get the email, name and points of the users who purchased it and were active since yesterday.`
+> For each flight we want to get the email, name and points of the users who purchased it and were active since yesterday.
 
 We can't use any of the features that API Platform provides us, but instead we need to make them on our own.
 
