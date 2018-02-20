@@ -92,7 +92,8 @@ on top of a property and it will automatically apply that validation when doing 
 
 Don't forget to import the `@Assert` by putting this on top of the file: `use Symfony\Component\Validator\Constraints as Assert;`
 
-Here you can learn more about validation and all the different possibilities that it allows us to have: http://symfony.com/doc/current/validation.html
+Here you can learn more about validation and all the different possibilities that it allows us to have: 
+http://symfony.com/doc/current/validation.html
 
 ### 3.2 Filters 
 
@@ -115,7 +116,7 @@ Let's say that the airline company wants to send a promotion to certain users an
 
 We can't use any of the features that API Platform provides us, but instead we need to make them on our own.
 
-The first step to do this is create a new endpoint (/flights/{id}/topusers) that will retrieve this information. 
+The first step to do this is create a new endpoint `/flights/{id}/topusers` that will retrieve this information. 
 In order to do this, we first need to create the endpoint in the routing.yml, located in the config folder, and specify the following:
 
 ``` yaml
@@ -152,4 +153,4 @@ point out that there is something wrong with the validation.
 
 Your task is to write unit tests which verify that all the business requirements are met at all times.
 
-Again, you can see how a unit test looks like by looking at the UsersTest.
+Again, you can see how a unit test looks like by looking at the TestFlights.
