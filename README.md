@@ -52,9 +52,7 @@ cd /vagrant
 ls
 ```
 
-## 1 - Getting Started
-
-- Step 1: Create a fresh installation of api-platform
+## 1 - Create a fresh installation of api-platform
 
 ```bash
 composer create-project api-platform/api-platform 0-workspace "2.1.*"
