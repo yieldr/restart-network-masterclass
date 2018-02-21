@@ -84,6 +84,8 @@ There are 3 Entities which represent users, flights and ancillaries.
 
 The Users Entity is complete and contains all the required mappings and validation requirements.
 
+To generate the tables in the database you will need to run: `php bin/console doctrine:schema:create`
+
 ## 3 - Add validation and filters
 
 After completing stage 2, it is time to add validation to our Entities. Validation is very important since we only allow
@@ -162,7 +164,6 @@ Your task is to write unit tests which verify that all the business requirements
 
 Again, you can see how a unit test looks like by looking at the `FlightsTest`.
 
-You can execute the tests by running:
-```bash
-php vendor/bin/phpunit
-```
+We have a command to generate test data (fixtures), you can execute it by running: `php bin/console fixtures:load`
+
+You can execute the tests by running: `php vendor/bin/phpunit`
