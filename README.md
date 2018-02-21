@@ -9,7 +9,7 @@ For this tutorial we will be using the [Api Platform](https://api-platform.com/)
 
 Today's challenge is split in 5 stages:
 
-1. Getting Started
+1. Install API-Platform
 2. Create Entities
 3. Validation & Filters
 4. Controllers
