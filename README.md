@@ -63,6 +63,8 @@ You will be prompted to enter a few configuration preferences which also provide
 
 In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and update them with your preferred values :)
 
+To create a database you will need to run: `php bin/console doctrine:database:create`
+
 Our project skeleton is set up! To test it, lets start a web server.
 
 ```bash
