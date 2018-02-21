@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Flight
 {
     /**
-     * @var int The id of this book.
+     * @var int The id of this flight.
      *
      * @ORM\Id
      * @ORM\GeneratedValue

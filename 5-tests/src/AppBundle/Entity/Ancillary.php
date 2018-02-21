@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Ancillary
 {
     /**
-     * @var int The id of this book.
+     * @var int The id of this ancillary.
      *
      * @ORM\Id
      * @ORM\GeneratedValue

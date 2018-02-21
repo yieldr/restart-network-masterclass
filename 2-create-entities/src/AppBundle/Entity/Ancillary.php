@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Ancillary
 {
     /**
-     * @var int The id of this book.
+     * @var int The id of this ancillary.
      *
      * @ORM\Id
      * @ORM\GeneratedValue

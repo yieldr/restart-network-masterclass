@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User
 {
     /**
-     * @var int The id of this book.
+     * @var int The id of this user.
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -78,7 +78,7 @@ class User
     private $ancillaries;
 
     /**
-     * @var Booking[] Bookings that this user made.
+     * @var Flight[] Bookings that this user made.
      *
      * @ORM\ManyToMany(targetEntity="Flight", inversedBy="users")
      */
@@ -197,7 +197,7 @@ class User
     }
 
     /**
-     * @return Booking[]
+     * @return Flight[]
      */
     public function getFlights()
     {
@@ -205,7 +205,7 @@ class User
     }
 
     /**
-     * @param Booking[] $flights
+     * @param Flight[] $flights
      */
     public function setFlights($flights)
     {
