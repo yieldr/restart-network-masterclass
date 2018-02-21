@@ -84,7 +84,7 @@ The Users Entity is complete and contains all the required mappings and validati
 
 ## 3 - Add validation and filters
 
-After completing task 2, it is time to add validation to our Entities. Validation is very important since we only allow
+After completing stage 2, it is time to add validation to our Entities. Validation is very important since we only allow
 incoming data to have a specific format. To do so, you need to read carefully the high level requirements for each entity
 and decide what are the appropriate validation rules.
 
