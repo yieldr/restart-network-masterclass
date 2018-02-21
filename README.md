@@ -161,3 +161,8 @@ If for any reason the validation is removed from the Entity because of a develop
 Your task is to write unit tests which verify that all the business requirements are met at all times.
 
 Again, you can see how a unit test looks like by looking at the `TestFlights`.
+
+You can execute the tests by running:
+```bash
+php vendor/bin/phpunit
+```
