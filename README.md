@@ -15,41 +15,18 @@ Today's challenge is split in 5 stages:
 4. Controllers
 5. Tests
 
+The goal is to work on your own project and apply theoretical knowledge you gained during the presentation.
+In the main project directory you will see different numbered folders corresponding to each stage of the assignment.
+They contain the correct state of the project you should come up after each of the challenge stage.
+Remember that the goal is to practice and learn, so please check the answers only when needed.
+
+
 ## Let's Begin!
 
-Clone the repository of this workshop by running the following command in your terminal:
-
-```bash
-git clone https://github.com/yieldr/restart-network-masterclass.git
-```
-
-Next change into the projects directory
+Go to the url provided and login to cloud9.
 
 ```bash
 cd restart-network-masterclass
-```
-
-Now it's time to set up our environment. From inside the `restart-network-masterclass` directory run:
-
-```bash
-vagrant up
-```
-
-This command will create an Ubuntu Linux virtual machine and install necessary software such as PHP7 and MySQL. The contents of this directory will be synchronized inside this virtual machine under the `/vagrant` directory.
-
-Once the installation is complete run the following command to access the virtual machine:
-
-```bash
-vagrant ssh
-```
-
-From this moment onwards, this is the environment we will be working in.
-
-Now lets change directory to where vagrant has synchronized our project files and inspect the files within that folder:
-
-```bash
-cd /vagrant
-ls
 ```
 
 ## 1 - Create a fresh installation of api-platform
@@ -82,7 +59,7 @@ the `src/AppBundle/Entity` directory.
 
 There are 3 Entities which represent users, flights and ancillaries.
 
-The Users Entity is complete and contains all the required mappings and validation requirements.
+The user Entity (User.php) is complete and contains all the required mappings and validation requirements. 
 
 To generate the tables in the database you will need to run: `php bin/console doctrine:schema:create`
 
