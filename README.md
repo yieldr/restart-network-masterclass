@@ -64,10 +64,16 @@ update them with your preferred values :)
 
 To create a database you will need to run: `php bin/console doctrine:database:create`
 
-Our project skeleton is set up! To test it, press "Preview" -> "Preview Running Application".
+Now we only need to run the server:
+
+```bash
+php bin/console server:start 0.0.0.0:8080
+```
+
+Our project skeleton is set up! To test it, press *"Preview" -> "Preview Running Application"*.
 
 If you see an error: "You are not allowed to access this file. Check app_dev.php for more information.", you will have to
-comment the following lines in web/app_dev.php:
+*delete or comment out* the following lines in web/app_dev.php:
 
 ```
 if (isset($_SERVER['HTTP_CLIENT_IP'])
