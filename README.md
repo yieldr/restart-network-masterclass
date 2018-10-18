@@ -99,6 +99,11 @@ The following command will generate mysql database tables based on the entities 
 
 `php bin/console doctrine:schema:create`
 
+If you have already run the previous command and you want to update your database with the new entities you created you 
+can run the following command:
+
+`php bin/console doctrine:schema:update --force`
+
 ## 3 - Add validation and filters
 
 After completing stage 2, it is time to add validation to our Entities. Validation is very important since we only allow
@@ -121,10 +126,19 @@ Now let's add some filters. Filters are useful because they help us to easily ch
 parameters. For example, what if we have to order the users from the ones that have more points to the ones that have 
 the least? Or order them by the last time they have been active?
 
-Using filters makes this a very easy task. We just need to add `@ApiResource(attributes={"filters"={"user.order_filter"}})` 
-as a comment on top of the class and that's it!
+Using filters makes this a very easy task. We need to add `@ApiResource(attributes={"filters"={"user.order_filter"}})` 
+as a comment on top of the class.
 
-If we now go to: `/users?order[points]=desc`, we should be able to obtain the users ordered by their amount of points 
+In addition we need to define the filter in the `config/api_filters.yml`
+
+```yaml
+  user.order_filter:
+    parent: 'api_platform.doctrine.orm.order_filter'
+    arguments: [ { id: ~, name: ~,  points: ~, last_seen: ~} ]
+    tags: [ 'api_platform.filter' ]
+```
+
+If we now do a request to `users` with `order[points]=desc`, we should be able to obtain the users ordered by their amount of points 
 from bigger to smaller.
 
 You can read more about ordered filters here: https://api-platform.com/docs/core/filters/#order-filter
