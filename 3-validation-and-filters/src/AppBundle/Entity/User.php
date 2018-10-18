@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,7 +28,7 @@ class User
 
     /**
      * @var string The name of the user.
-     *
+     * @ApiFilter(SearchFilter::class, strategy="partial")
      * @ORM\Column(type="string", length=125, nullable=false)
      *
      * @Assert\Type("string")

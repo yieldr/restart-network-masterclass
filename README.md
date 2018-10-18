@@ -53,7 +53,6 @@ The following command will create a new project in folder named "0-workspace":
 
 ```bash
 composer create-project api-platform/api-platform 0-workspace "2.1.*"
-cd 0-workspace
 ```
 
 You will be prompted to enter a few configuration preferences which also provide default values. 
@@ -62,10 +61,15 @@ Set `database_host` to `localhost` and the rest just press enter for all of them
 In case you want to change some of these values afterwards just go to the `app/config/parameters.yml` file and 
 update them with your preferred values :)
 
-To create a database you will need to run: `php bin/console doctrine:database:create`
+Let's change our directory to the newly created one:
+```bash
+ cd 0-workspace
+ ``` 
+
+To create a database you will need to run:
+`php bin/console doctrine:database:create`
 
 Now we only need to run the server:
-
 ```bash
 php bin/console server:start 0.0.0.0:8080
 ```
@@ -199,6 +203,28 @@ Your task is to write unit tests which verify that all the business requirements
 
 Again, you can see how a unit test looks like by looking at the `FlightsTest`.
 
-We have a command to generate test data (fixtures), you can execute it by running: `php bin/console fixtures:load`
+We have a command to generate test data (fixtures), you can execute it by running: `php bin/console doctrine:fixtures:load`
 
 You can execute the tests by running: `php vendor/bin/phpunit`
+
+
+## Notes:
+
+If there is the need to switch to a different checkpoint don't forget to:
+
+Stop the current server before switching
+```bash
+php bin/console server:stop
+```
+
+After switching to the new checkpoint:
+
+```bash
+composer update
+```
+
+Update the current database schema:
+
+```bash
+php bin/console doctrine:schema:update
+```

@@ -11,5 +11,3 @@ user_flight_topusers:
     methods:  ['GET']
     defaults:
         _controller: 'AppBundle:Flight:topUsers'
-        _api_resource_class: 'AppBundle\Entity\Flight'
-        _api_item_operation_name: 'topUsers'
