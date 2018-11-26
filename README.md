@@ -147,19 +147,24 @@ Now let's add some filters. Filters are useful because they help us to easily ch
 parameters. For example, what if we have to order the users from the ones that have more points to the ones that have 
 the least? Or order them by the last time they have been active?
 
-Using filters makes this a very easy task. We need to add 
-```
-@ApiResource(attributes={"filters"={"user.order_filter"}})
-``` 
-as a comment on top of the class.
+Using filters makes this a very easy task. We need to update the `@ApiResource` annotation on top of our class.
 
-In addition we need to define the filter in the `config/api_filters.yml`
+```
+@ApiResource(attributes={"filters"={"user.order_filter","user.search_filter"}})
+```
+
+In addition we need to define the filters in the `config/api_filters.yml`
 
 ```yaml
-  user.order_filter:
-    parent: 'api_platform.doctrine.orm.order_filter'
-    arguments: [ { id: ~, name: ~,  points: ~, last_seen: ~} ]
-    tags: [ 'api_platform.filter' ]
+    user.order_filter:
+        parent: 'api_platform.doctrine.orm.order_filter'
+        arguments: [ { id: ~, name: ~,  points: ~, last_seen: ~ } ]
+        tags: [ 'api_platform.filter' ]
+        
+    user.search_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { id: 'exact', name: 'partial', email: 'partial' } ]
+        tags: ['api_platform.filter']
 ```
 
 If we now do a request to `users` with `order[points]=desc`, we should be able to obtain the users ordered by their amount of points 
