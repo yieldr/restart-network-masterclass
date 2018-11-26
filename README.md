@@ -66,7 +66,8 @@ Let's change our directory to the newly created one:
  cd 0-workspace
  ``` 
 
-To create a database you will need to run:
+To *create a database* you will need to run:
+
 ```bash
 php bin/console doctrine:database:create
 ```
