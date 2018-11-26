@@ -67,7 +67,9 @@ Let's change our directory to the newly created one:
  ``` 
 
 To create a database you will need to run:
-`php bin/console doctrine:database:create`
+```bash
+php bin/console doctrine:database:create
+```
 
 Now we only need to run the server:
 ```bash
@@ -89,6 +91,18 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 }
 ```
 
+We also need to comment out the following:
+```yaml
+    http_cache:
+        invalidation:
+            enabled: true
+            varnish_urls: '%varnish_urls%'
+        max_age: 0
+        shared_max_age: 3600
+        vary: ['Content-Type', 'Authorization']
+        public: true
+```
+
 **Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
 
 ## 2 - Create some entities
@@ -98,6 +112,8 @@ the `src/AppBundle/Entity` directory.
 
 Your task is to create entities representing a user, flight and ancillary. You will be guided on how to create a User
 entity as an example during the class.
+
+Take a look at the class `app/src/Entity/Foo.php` and use it as a guideline
 
 The following command will generate mysql database tables based on the entities you created:
 
