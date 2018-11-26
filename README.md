@@ -94,14 +94,14 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 We also need to comment out the following:
 ```yaml
-    http_cache:
-        invalidation:
-            enabled: true
-            varnish_urls: '%varnish_urls%'
-        max_age: 0
-        shared_max_age: 3600
-        vary: ['Content-Type', 'Authorization']
-        public: true
+http_cache:
+    invalidation:
+        enabled: true
+        varnish_urls: '%varnish_urls%'
+    max_age: 0
+    shared_max_age: 3600
+    vary: ['Content-Type', 'Authorization']
+    public: true
 ```
 
 **Congratulations! You successfully created a fresh installation of the api-platform locally and you are ready to go!** 🎉 🎊
@@ -147,7 +147,10 @@ Now let's add some filters. Filters are useful because they help us to easily ch
 parameters. For example, what if we have to order the users from the ones that have more points to the ones that have 
 the least? Or order them by the last time they have been active?
 
-Using filters makes this a very easy task. We need to add `@ApiResource(attributes={"filters"={"user.order_filter"}})` 
+Using filters makes this a very easy task. We need to add 
+```
+@ApiResource(attributes={"filters"={"user.order_filter"}})
+``` 
 as a comment on top of the class.
 
 In addition we need to define the filter in the `config/api_filters.yml`
