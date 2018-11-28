@@ -149,12 +149,15 @@ user_flight_topusers:
     methods:  ['GET']
     defaults:
         _controller: 'AppBundle:Flight:topUsers'
-        _api_resource_class: 'AppBundle\Entity\Flight'
-        _api_item_operation_name: 'topUsers'
 ```
 
 Now we can create a controller called `FlightController` in the `src/AppBundle/Controller` directory with a function 
 called `topUsersAction` that will receive a flight.
+
+Copy the DataFixtures folder to 0-workspace.
+Run fixtures to create users to have flights.
+
+`php bin/console doctrine:fixtures:load`
 
 The full example is explained at the end of the page, in the paragraph starting with "Alternatively, you can also use...":
 
